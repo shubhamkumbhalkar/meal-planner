@@ -86,6 +86,21 @@ weight_loss_pace: "moderate"  # slow, moderate, aggressive
 
 Uses `kiro-cli` by default (free, local). Can be adapted to use any LLM API.
 
+## Roadmap
+
+Upcoming features:
+
+- [ ] **WhatsApp notifications** — Get your weekly plan + grocery list sent directly to WhatsApp
+- [ ] **Shopping list export** — Send grocery list to Apple Reminders, Todoist, or AnyList
+- [ ] **Web UI** — Simple form-based interface for non-technical users
+- [ ] **Spoonacular integration** — Real recipes from 500K+ database with verified nutrition
+- [ ] **Weight tracking** — Log weekly weight, auto-adjust calories when you plateau
+- [ ] **Calorie cycling** — Higher carbs on workout days, lower on rest days
+- [ ] **Seasonal produce** — Suggest meals based on what's cheap/in-season
+- [ ] **Multi-person support** — Different dietary needs in the same household
+- [ ] **Cost estimator** — Estimated weekly grocery spend based on your store
+- [ ] **Leftover optimizer** — Reuse extra servings in next day's meals
+
 ## License
 
 MIT
