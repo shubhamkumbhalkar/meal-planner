@@ -370,8 +370,14 @@ def cmd_generate(args):
     # Send to Slack if configured
     webhook = profile.get("slack_webhook", "")
     if webhook:
-        import requests
-        requests.post(webhook, json={"text": f"*🍽️ Meal Plan — {date_str}*\n\n{plan[:3000]}"}, timeout=10)
+        import requests as req
+        # Send plan summary
+        req.post(webhook, json={"text": f"*🍽️ Meal Plan — Week of {date_str}*\n\n{plan[:3000]}"}, timeout=10)
+        # Send grocery list separately (easy to screenshot at store)
+        import re as _re
+        grocery_match = _re.search(r'## Grocery List(.*?)(?=## |$)', plan, _re.DOTALL)
+        if grocery_match:
+            req.post(webhook, json={"text": f"*🛒 Grocery List — Week of {date_str}*\n{grocery_match.group(1).strip()}"}, timeout=10)
         print("📨 Sent to Slack!")
 
 
