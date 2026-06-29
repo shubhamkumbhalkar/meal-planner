@@ -1,0 +1,85 @@
+# Meal Planner — Profile Configuration
+# Copy to profile.yaml and fill in your details.
+
+# === Identity ===
+name: "Jane"
+servings: 1                # how many people eating
+
+# === Body Stats (for auto-calculating calories & macros) ===
+age: 28
+gender: "male"             # male, female, other
+units: "imperial"          # metric or imperial
+
+# Imperial
+height_ft: 5
+height_in: 9
+weight_lbs: 165
+
+# Metric (used if units: "metric")
+# height_cm: 175
+# weight_kg: 75
+
+activity_level: "moderate"
+# sedentary     = desk job, no exercise
+# light         = 1-2 days/week exercise
+# moderate      = 3-5 days/week exercise
+# active        = 6-7 days/week exercise
+# very-active   = athlete / physical job + daily exercise
+
+# === Goals ===
+goal: "maintenance"          # weight-loss, muscle-gain, maintenance
+target_weight_lbs: 0         # optional goal weight (0 = not set)
+# target_weight_kg: 0        # metric version
+weight_loss_pace: "moderate" # slow (0.25kg/week), moderate (0.5kg/week), aggressive (0.75kg/week)
+
+# Auto-calculated from above (or override manually):
+daily_calories: 0            # 0 = auto-calculate
+protein_target_grams: 0      # 0 = auto-calculate
+
+# === Diet Rules ===
+dietary_tradition: "none"
+# Options:
+#   halal              → no pork, no alcohol, halal meat only
+#   kosher             → no pork, no shellfish, no meat+dairy together
+#   hindu-vegetarian   → no meat, no eggs, no fish
+#   hindu-nonveg       → no beef, no pork; chicken, goat, shrimp, fish, eggs ok
+#   sattvic            → no meat, no eggs, no onion, no garlic
+#   jain               → no meat, no eggs, no root vegetables
+#   buddhist-vegetarian → no meat, no fish
+#   none               → no restrictions from tradition
+
+dietary_restrictions: []   # vegetarian, vegan, gluten-free, dairy-free, keto, paleo, low-carb, low-sodium
+allergies: []              # nuts, peanuts, shellfish, eggs, soy, wheat, sesame, fish
+disliked_foods: []         # cilantro, mushrooms, tofu, etc.
+favorite_foods: []         # chicken tikka, pasta, tacos (will appear more often)
+
+# === Lifestyle ===
+meals_per_day: 3           # 2, 3, 4 (4 = 3 meals + snack)
+prep_style: "hybrid"       # weekly (batch Sunday), daily (cook fresh), hybrid
+max_cook_time_minutes: 30  # per meal
+skill_level: "intermediate" # beginner, intermediate, advanced
+variety: "moderate"        # low (ok repeating), moderate, high (all different)
+
+# === Preferences ===
+cuisines: ["mixed"]        # indian, mexican, mediterranean, asian, american, italian, thai, chinese, korean, mixed
+breakfast_style: "quick"   # quick (smoothie/oats/eggs), full (cooked), skip
+lunch_style: "packed"      # packed (meal prep container), fresh, eat-out
+dinner_style: "cooked"     # cooked, quick, simple
+
+# === Budget & Shopping ===
+budget: "medium"           # low (~$50/week), medium (~$80/week), high (~$120+/week)
+grocery_store: ""          # Costco, Trader Joes, Walmart, Whole Foods, Aldi
+prefer_organic: false
+
+# === Schedule ===
+prep_day: "sunday"         # day you batch cook
+busy_days: []              # days where meals should be quick/leftovers (e.g. ["tuesday", "thursday"])
+
+# === Output ===
+output_format: "markdown"  # markdown, json, slack
+slack_webhook: ""          # optional: send weekly plan to Slack
+
+# === Recipe Source ===
+# Get a free API key at https://spoonacular.com/food-api (150 requests/day free)
+# Save it: mkdir -p ~/.meal-planner && echo "YOUR_KEY" > ~/.meal-planner/spoonacular_key
+# Without the key, the tool uses AI-only generation (less accurate nutrition data)
