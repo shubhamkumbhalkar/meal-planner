@@ -60,6 +60,14 @@ max_cook_time_minutes: 30  # per meal
 skill_level: "intermediate" # beginner, intermediate, advanced
 variety: "moderate"        # low (ok repeating), moderate, high (all different)
 
+# Meal prep mode: same meals all week (cook once, eat all week)
+repeat_meals: false        # true = same breakfast/lunch/dinner every day
+# When true:
+#   - Generates 1 breakfast, 1 lunch, 1 dinner (×7 servings each)
+#   - Single prep session covers the whole week
+#   - Grocery list is simpler and cheaper (bulk buying)
+#   - Great for bodybuilders, busy people, budget-conscious
+
 # === Preferences ===
 cuisines: ["mixed"]        # indian, mexican, mediterranean, asian, american, italian, thai, chinese, korean, mixed
 breakfast_style: "quick"   # quick (smoothie/oats/eggs), full (cooked), skip

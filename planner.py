@@ -128,6 +128,63 @@ def build_prompt(profile: dict, nutrition: dict, day: str = None) -> str:
     busy_days = profile.get("busy_days", [])
     prep_day = profile.get("prep_day", "sunday")
 
+    # Meal prep mode: same meals repeated all week
+    repeat_meals = profile.get("repeat_meals", False)
+    if repeat_meals:
+        prompt = f"""Generate a MEAL PREP plan (same meals every day for 7 days).
+
+NUTRITION TARGETS (per day):
+- Calories: {nutrition['daily_calories']} kcal
+- Protein: {nutrition['protein_g']}g
+- Carbs: {nutrition['carbs_g']}g
+- Fat: {nutrition['fat_g']}g
+
+RULES:
+- Meals per day: {profile.get('meals_per_day', 3)}
+- NEVER include: {', '.join(excluded) if excluded else 'no restrictions'}
+- Dietary restrictions: {', '.join(restrictions) if restrictions else 'none'}
+- Tradition notes: {rules['notes']}
+- Favorite foods (include often): {', '.join(profile.get('favorite_foods', [])) or 'none specified'}
+- Cuisines: {', '.join(profile.get('cuisines', ['mixed']))}
+- Skill level: {profile.get('skill_level', 'intermediate')}
+- Budget: {profile.get('budget', 'medium')}
+- Servings per meal: 7 (one batch for the whole week)
+
+Generate exactly ONE breakfast, ONE lunch, and ONE dinner that:
+1. Hit the daily macro targets when combined
+2. Store well in the fridge for 5 days (or freeze)
+3. Reheat easily (microwave-friendly)
+4. Are satisfying enough to eat every day
+
+FORMAT:
+
+## Breakfast (eaten daily, made in one batch)
+- **[Meal name]**: [description]
+- Per serving: [X] cal | Protein: [X]g | Carbs: [X]g | Fat: [X]g
+- Makes: 7 servings
+- Storage: [how long it lasts, how to store]
+- Reheat: [instructions]
+- Full recipe (7 servings):
+  - Ingredients: [list with exact quantities for 7 servings]
+  - Steps: [numbered cooking steps]
+
+## Lunch (eaten daily, made in one batch)
+[same format]
+
+## Dinner (eaten daily, made in one batch)
+[same format]
+
+## Daily Totals
+- Calories: [X] | Protein: [X]g | Carbs: [X]g | Fat: [X]g
+
+## Grocery List
+Group by section (Produce, Protein, Dairy, Pantry) with exact quantities for 7 days.
+
+## Prep Day Instructions
+Step-by-step for cooking all 3 meals in one session. Include estimated total prep time.
+"""
+        return prompt
+
     prompt = f"""Generate a meal plan with these requirements:
 
 NUTRITION TARGETS (per day):
